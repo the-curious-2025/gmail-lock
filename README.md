@@ -1,4 +1,3 @@
-the moment the tab is closed — so refreshing Gmail does **not** ask for the
 # Gmail Lock
 
 A Chrome extension (Manifest V3) that locks Gmail with a password.
