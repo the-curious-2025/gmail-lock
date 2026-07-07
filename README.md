@@ -33,3 +33,4 @@ A Chrome extension (Manifest V3) that locks Gmail with a password.
 
 MIT License. See [LICENSE](LICENSE).
 
+
