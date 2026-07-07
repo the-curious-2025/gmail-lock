@@ -1,0 +1,246 @@
+/*
+  Gmail Lock — Lock Screen Styles
+  --------------------------------
+  This stylesheet defines the full-screen lock overlay that appears over
+  Gmail. It is injected into a *closed Shadow DOM* by content.js (as the
+  LOCK_CSS constant) rather than being loaded as a page-level content
+  script stylesheet. That keeps Gmail's styles from leaking in and keeps
+  these styles from ever touching Gmail's own DOM.
+
+  Keep this file and the LOCK_CSS constant in content.js in sync.
+*/
+
+:host,
+* {
+  box-sizing: border-box;
+}
+
+.gmlk-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  animation: gmlk-fade-in 0.35s ease-out;
+  pointer-events: auto;
+}
+
+.gmlk-overlay.gmlk-fade-out {
+  animation: gmlk-fade-out 0.4s ease-in forwards;
+  pointer-events: none;
+}
+
+.gmlk-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 8, 12, 0.72);
+  backdrop-filter: blur(22px) saturate(120%);
+  -webkit-backdrop-filter: blur(22px) saturate(120%);
+}
+
+.gmlk-bg-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(rgba(131, 206, 244, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(131, 206, 244, 0.06) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at 50% 40%, black, transparent 75%);
+}
+
+.gmlk-panel {
+  position: relative;
+  width: min(360px, 88vw);
+  padding: 40px 32px 32px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(15, 22, 30, 0.85), rgba(9, 13, 18, 0.85));
+  border: 1px solid rgba(131, 206, 244, 0.18);
+  box-shadow:
+    0 0 0 1px rgba(131, 206, 244, 0.04),
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    0 0 40px rgba(131, 206, 244, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  text-align: center;
+  color: #e7f3fa;
+  animation: gmlk-rise 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gmlk-panel.gmlk-shake {
+  animation: gmlk-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.gmlk-shield {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: radial-gradient(circle at 50% 30%, rgba(131, 206, 244, 0.16), rgba(131, 206, 244, 0.02));
+  border: 1px solid rgba(131, 206, 244, 0.3);
+  overflow: hidden;
+}
+
+.gmlk-shield svg {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.gmlk-shield::after {
+  content: "";
+  position: absolute;
+  left: -100%;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(131, 206, 244, 0.5), transparent);
+  animation: gmlk-scan 2.6s ease-in-out infinite;
+}
+
+.gmlk-eyebrow {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #83cef4;
+  opacity: 0.75;
+  margin: 0 0 8px;
+}
+
+.gmlk-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+  color: #f2f9fd;
+}
+
+.gmlk-subtitle {
+  font-size: 13.5px;
+  color: #7d94a3;
+  margin: 0 0 26px;
+}
+
+.gmlk-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.gmlk-input-wrap {
+  position: relative;
+}
+
+.gmlk-input {
+  width: 100%;
+  padding: 13px 16px;
+  font-size: 20px;
+  letter-spacing: 0.4em;
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: #f2f9fd;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(131, 206, 244, 0.2);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.gmlk-input::placeholder {
+  letter-spacing: normal;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #4d626f;
+  font-size: 13px;
+}
+
+.gmlk-input:focus {
+  border-color: rgba(131, 206, 244, 0.7);
+  background: rgba(131, 206, 244, 0.05);
+  box-shadow: 0 0 0 4px rgba(131, 206, 244, 0.12), 0 0 20px rgba(131, 206, 244, 0.15);
+}
+
+.gmlk-error {
+  font-size: 12.5px;
+  color: #ff6b7a;
+  margin: -4px 0 0;
+  min-height: 16px;
+  transition: opacity 0.15s ease;
+}
+
+.gmlk-error[hidden] {
+  display: none;
+}
+
+.gmlk-btn {
+  margin-top: 4px;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #05080c;
+  background: linear-gradient(180deg, #9adcff, #83cef4);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  box-shadow: 0 8px 24px rgba(131, 206, 244, 0.25);
+}
+
+.gmlk-btn:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 10px 28px rgba(131, 206, 244, 0.35);
+}
+
+.gmlk-btn:active {
+  transform: scale(0.97);
+}
+
+.gmlk-footer {
+  margin-top: 22px;
+  font-size: 11px;
+  color: #445560;
+  letter-spacing: 0.03em;
+}
+
+@keyframes gmlk-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gmlk-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes gmlk-rise {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes gmlk-shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-6px); }
+  40%, 60% { transform: translateX(6px); }
+}
+
+@keyframes gmlk-scan {
+  0% { left: -60%; }
+  100% { left: 130%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gmlk-overlay,
+  .gmlk-panel,
+  .gmlk-shield::after {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gmail Lock</title>
+  <style>
+    :root {
+      --bg-deep: #05080c;
+      --bg-panel: #0e1720;
+      --accent: #83cef4;
+      --text-primary: #eaf4fa;
+      --text-muted: #7d94a3;
+      --text-faint: #445560;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      width: 268px;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .wrap {
+      padding: 18px;
+    }
+    .head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 30%, rgba(131, 206, 244, 0.2), rgba(131, 206, 244, 0.02));
+      border: 1px solid rgba(131, 206, 244, 0.3);
+      flex-shrink: 0;
+    }
+    .mark svg { width: 18px; height: 18px; }
+    .title { font-size: 14px; font-weight: 600; margin: 0; }
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(131, 206, 244, 0.12);
+      font-size: 12.5px;
+      margin-bottom: 12px;
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--text-faint);
+      flex-shrink: 0;
+    }
+    .dot.on { background: var(--accent); box-shadow: 0 0 0 3px rgba(131, 206, 244, 0.15); }
+    button {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #05080c;
+      background: linear-gradient(180deg, #9adcff, #83cef4);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    button:hover { filter: brightness(1.06); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z" stroke="#83CEF4" stroke-width="1.4" fill="rgba(131,206,244,0.08)"/>
+          <rect x="9" y="11" width="6" height="5" rx="1.2" stroke="#83CEF4" stroke-width="1.3" fill="none"/>
+          <path d="M10 11V9.3a2 2 0 0 1 4 0V11" stroke="#83CEF4" stroke-width="1.3" fill="none"/>
+        </svg>
+      </div>
+      <p class="title">Gmail Lock</p>
+    </div>
+    <div class="status">
+      <span class="dot" id="dot"></span>
+      <span id="status-text">Checking status…</span>
+    </div>
+    <button id="open-settings">Open settings</button>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

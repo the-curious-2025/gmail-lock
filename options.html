@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gmail Lock — Settings</title>
+  <link rel="icon" href="icons/icon48.png" />
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <main class="page">
+    <header class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z" stroke="#83CEF4" stroke-width="1.4" fill="rgba(131,206,244,0.08)"/>
+          <rect x="9" y="11" width="6" height="5" rx="1.2" stroke="#83CEF4" stroke-width="1.3" fill="none"/>
+          <path d="M10 11V9.3a2 2 0 0 1 4 0V11" stroke="#83CEF4" stroke-width="1.3" fill="none"/>
+        </svg>
+      </div>
+      <div>
+        <p class="eyebrow">Control Panel</p>
+        <h1>Gmail Lock</h1>
+      </div>
+    </header>
+
+    <section class="card" id="protection-card">
+      <div class="card-row">
+        <div>
+          <h2>Protection on this computer</h2>
+          <p class="hint">
+            Uses storage that stays on this device only, so turning this on
+            here won't lock Gmail on your other computers — even if Chrome
+            syncs the extension itself.
+          </p>
+        </div>
+      </div>
+
+      <label class="toggle-row" for="enabled-toggle">
+        <span class="toggle-label">
+          <span class="status-dot" id="status-dot" aria-hidden="true"></span>
+          <span id="status-text">Checking status…</span>
+        </span>
+        <span class="switch">
+          <input type="checkbox" id="enabled-toggle" />
+          <span class="switch-track"><span class="switch-thumb"></span></span>
+        </span>
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>Change password</h2>
+      <p class="hint">The password is hashed with SHA-256 before it's stored — it's never saved as plain text.</p>
+
+      <form id="password-form" class="form" autocomplete="off">
+        <div class="field">
+          <label for="new-password">New password</label>
+          <input type="password" id="new-password" placeholder="Enter new password" autocomplete="new-password" />
+        </div>
+        <div class="field">
+          <label for="confirm-password">Confirm new password</label>
+          <input type="password" id="confirm-password" placeholder="Re-enter new password" autocomplete="new-password" />
+        </div>
+
+        <p class="form-message" id="password-message" hidden></p>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Save password</button>
+          <button type="button" class="btn btn-ghost" id="reset-btn">Reset to default (0148)</button>
+        </div>
+      </form>
+    </section>
+
+    <p class="footnote">
+      Gmail Lock only runs on <code>mail.google.com</code>. Settings are stored locally with
+      <code>chrome.storage.local</code> and never leave this device.
+    </p>
+  </main>
+
+  <script src="options.js"></script>
+</body>
+</html>
