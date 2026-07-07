@@ -2,7 +2,9 @@
 
 A Chrome extension (Manifest V3) that locks Gmail with a password.
 
-## Screenshot
+## Screenshots
+
+![Blocked Gmail screen](assets/screenshot-blocked.png)
 
 ![Settings screen](assets/screenshot-options.png)
 
@@ -27,10 +29,3 @@ A Chrome extension (Manifest V3) that locks Gmail with a password.
 4. Click Load unpacked and select the `gmail-lock` folder.
 5. Open extension settings and turn protection on.
 
-## Quick update with CLI
-
-```powershell
-git add .
-git commit -m "update"
-git push
-```
