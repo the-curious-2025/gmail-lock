@@ -29,3 +29,7 @@ A Chrome extension (Manifest V3) that locks Gmail with a password.
 4. Click Load unpacked and select the `gmail-lock` folder.
 5. Open extension settings and turn protection on.
 
+## License
+
+MIT License. See [LICENSE](LICENSE).
+
