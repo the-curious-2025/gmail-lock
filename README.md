@@ -95,3 +95,32 @@ than `mail.google.com`.
 Dark "cyber security" theme — background `#05080C`, accent `#83CEF4`,
 glassmorphism panels, soft glow, and a scanning-shield motif on the lock
 screen. See `assets/design-tokens.md` for the full palette and motion spec.
+
+## Quick GitHub upload (CLI)
+
+Use this when you want to publish updates fast from the command line.
+
+1. Open PowerShell in the project folder.
+2. Make sure `git` and `gh` are available:
+
+```powershell
+git --version
+gh --version
+```
+
+3. Login once (if needed):
+
+```powershell
+gh auth login --hostname github.com --web --git-protocol https
+```
+
+4. Commit and push changes:
+
+```powershell
+git add .
+git commit -m "Describe your update"
+git push
+```
+
+If your environment blocks admin installs, portable user-level tools can be
+used from `C:\Users\<you>\tools\mingit\cmd` and `C:\Users\<you>\tools\gh\bin`.
