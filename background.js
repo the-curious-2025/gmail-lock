@@ -12,7 +12,7 @@
  * protection on for a specific computer from the settings page.
  */
 
-const DEFAULT_PASSWORD = "0148";
+const DEFAULT_PASSWORD = "1234";
 
 async function sha256Hex(text) {
   const bytes = new TextEncoder().encode(text);

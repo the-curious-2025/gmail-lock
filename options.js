@@ -10,7 +10,7 @@
  * Sync — only the extension code itself syncs, not this state.
  */
 
-const DEFAULT_PASSWORD = "0148";
+const DEFAULT_PASSWORD = "1234";
 const MIN_PASSWORD_LENGTH = 4;
 
 const enabledToggle = document.getElementById("enabled-toggle");
